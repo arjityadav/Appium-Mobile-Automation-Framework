@@ -7,12 +7,10 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import io.appium.java_client.AppiumBy;
 
-public class AppiumBasics extends BaseTest{
+public class Scenario1 extends BaseTest{
 	
 	@Test
-	public void AppiumTest() throws MalformedURLException, URISyntaxException {
-		
-		//actual automation here
+	public void TC01_SetWifiName() throws MalformedURLException, URISyntaxException {
 		driver.findElement(AppiumBy.accessibilityId("Preference")).click();
 		driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
 		driver.findElement(By.xpath("//android.widget.CheckBox[@resource-id=\"android:id/checkbox\"]")).click();
