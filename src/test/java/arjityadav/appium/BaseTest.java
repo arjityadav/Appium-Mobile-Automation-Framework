@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
 
+import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -74,5 +75,30 @@ public class BaseTest {
 			));
 	}
 	
-
+	public void dragAndDropAction(WebElement ele, Integer xMovement, Integer yMovement) {
+		((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+			    "elementId", ((RemoteWebElement) ele).getId(), 
+			    "endX", xMovement,
+			    "endY", yMovement
+			));
+	}
+	
+	public void switchToLandscapeMode() {
+		DeviceRotation landscape = new DeviceRotation(0,0,90);
+		driver.rotate(landscape);
+	}
+	
+	public void setClipBoardText(String text) {
+		driver.setClipboardText(text);
+	}
+	
+	public String getClipBoardText() {
+		return driver.getClipboardText();
+	}
+	
+	public void startActivityDirectly(String activityFullName) {
+		((JavascriptExecutor) driver).executeScript("mobile: startActivity", ImmutableMap.of(
+			    "intent", activityFullName
+			));
+	}
 }
