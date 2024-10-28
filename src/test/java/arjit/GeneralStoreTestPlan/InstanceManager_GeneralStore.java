@@ -26,10 +26,11 @@ public class InstanceManager_GeneralStore {
 
 	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
+	public String currentDirectory = System.getProperty("user.dir");
 	
 	@BeforeClass(alwaysRun = true)
 	public void mobileTestConfiguration() throws MalformedURLException, URISyntaxException {
-
+		
 		// Appium server start automatically
 		
 		AppiumServiceBuilder builder = new AppiumServiceBuilder ();
@@ -46,8 +47,9 @@ public class InstanceManager_GeneralStore {
 
 		// Android UI Automator Initialize
 		UiAutomator2Options options = new UiAutomator2Options();
-		options.setDeviceName("ArjitPhone");
-		options.setApp("E:\\AppiumAutomation\\Appium-Mobile-Automation-Framework\\src\\test\\java\\resources\\General-Store.apk");
+		options.setChromedriverExecutable(currentDirectory+"\\driver\\chromedriver.exe");
+		options.setUdid("emulator-5554");
+		options.setApp(currentDirectory+"\\src\\test\\java\\resources\\General-Store.apk");
 
 		// AndroidDriver Initialize
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);

@@ -1,16 +1,17 @@
 package arjit.GeneralStoreTestPlan;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-
 import java.time.Duration;
+import java.util.Set;
+
 
 public class FillForm_Scenario01 extends InstanceManager_GeneralStore{
 	
@@ -63,5 +64,30 @@ public class FillForm_Scenario01 extends InstanceManager_GeneralStore{
 		WebElement onCartScreenPrice = driver.findElement(By.id("com.androidsample.generalstore:id/totalAmountLbl"));
 		Assert.assertTrue(onCartScreenPrice.isDisplayed());
 		Assert.assertEquals(onCartScreenPrice.getText(), "$ 220.0");
+	}
+	
+	@Test
+	public void TC05_OpenTermsAndConditionsLongPress() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement termsText = driver.findElement(By.id("com.androidsample.generalstore:id/termsButton"));
+		longPressAction(termsText);
+		WebElement termsPopupHeading = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.androidsample.generalstore:id/alertTitle")));
+		Assert.assertEquals(termsPopupHeading.getText(),"Terms Of Conditions");
+		driver.findElement(By.id("android:id/button1")).click();
+	}
+	
+	@Test
+	public void TC06_BrowserLevelTesting() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
+		Thread.sleep(2000);
+		Set<String> contexts = driver.getContextHandles();
+		for(String contextName:contexts) {
+			System.out.println(contextName);
+		}
+		driver.context("WEBVIEW_com.androidsample.generalstore");
+		driver.findElement(By.name("q")).sendKeys("Arjit Yadav");
+		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
 	}
 }
