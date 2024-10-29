@@ -1,4 +1,4 @@
-package arjit.GeneralStoreTestPlan;
+package arjit.BrowserTestPlan;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -22,7 +22,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
-public class InstanceManager_GeneralStore {
+public class InstanceManager_Browser {
 
 	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
@@ -47,10 +47,9 @@ public class InstanceManager_GeneralStore {
 
 		// Android UI Automator Initialize
 		UiAutomator2Options options = new UiAutomator2Options();
+		options.setCapability("browserName", "Chrome");
 		options.setChromedriverExecutable(currentDirectory+"\\driver\\chromedriver.exe");
 		options.setUdid("emulator-5554");
-		
-		options.setApp(currentDirectory+"\\src\\test\\java\\resources\\General-Store.apk");
 
 		// AndroidDriver Initialize
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4725").toURL(), options);
