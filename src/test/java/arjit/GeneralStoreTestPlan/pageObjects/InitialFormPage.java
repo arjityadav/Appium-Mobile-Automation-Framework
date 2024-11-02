@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import arjit.GeneralStoreTestPlan.utils.CommonActions;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -37,6 +38,10 @@ public class InitialFormPage extends CommonActions{
 	
 	@AndroidFindBy(id="com.androidsample.generalstore:id/radioFemale")
 	private WebElement femaleRadioBtn;
+	
+//	public void setActivity() {
+//		Activity activity = new Activity("")
+//	}
 	
 	public void clickLetsShopButton() {
 		letShopBtn.click();
