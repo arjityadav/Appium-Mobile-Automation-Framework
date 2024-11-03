@@ -46,7 +46,6 @@ public class BaseClass {
 		options.setUdid("emulator-5554");
 		options.setApp(currentDirectory+"\\src\\test\\java\\resources\\SauceLabsApp.apk");
 		options.setAppWaitActivity("com.swaglabsmobileapp.MainActivity");
-		options.setFullReset(true);
 
 		// AndroidDriver Initialize
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);

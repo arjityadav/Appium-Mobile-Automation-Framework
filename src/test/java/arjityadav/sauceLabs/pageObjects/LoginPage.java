@@ -3,6 +3,8 @@ package arjityadav.sauceLabs.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 import arjityadav.sauceLabs.utils.CommonActions;
 import arjityadav.sauceLabs.utils.CommonUtils;
 import io.appium.java_client.android.AndroidDriver;
@@ -40,6 +42,12 @@ public class LoginPage extends CommonActions{
 	public void enterLoginDetails(String username, String password) {
 		usernameField.sendKeys(username);
 		passwordField.sendKeys(password);
+		loginBtn.click();
+	}
+	
+	public void loginToSauceLabs() {
+		usernameField.sendKeys("standard_user");
+		passwordField.sendKeys("secret_sauce");
 		loginBtn.click();
 	}
 	
