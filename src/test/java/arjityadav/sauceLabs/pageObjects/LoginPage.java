@@ -1,17 +1,14 @@
 package arjityadav.sauceLabs.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
-import arjityadav.sauceLabs.utils.CommonActions;
-import arjityadav.sauceLabs.utils.CommonUtils;
+import arjityadav.appium.utils.CommonUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class LoginPage extends CommonActions{
+public class LoginPage extends CommonUtils{
 	
 	AndroidDriver driver;
 	

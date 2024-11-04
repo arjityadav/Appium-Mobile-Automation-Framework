@@ -1,9 +1,7 @@
 package arjityadav.sauceLabs.pageObjects;
 
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,15 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import arjityadav.sauceLabs.utils.CommonActions;
-import arjityadav.sauceLabs.utils.CommonUtils;
+import arjityadav.appium.utils.CommonUtils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.functions.ExpectedCondition;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class ProductsPage extends CommonActions{
+public class ProductsPage extends CommonUtils{
 	
 	AndroidDriver driver;
 	
@@ -44,13 +40,13 @@ public class ProductsPage extends CommonActions{
 	}
 	
 	public void clickOnAddToCard(String productName) {
-		CommonActions.scrollToElement(productName, driver);
+		scrollToElement(productName, driver);
 		WebElement addToCardBtn = driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"test-Item title\" and @text='"+productName+"']//..//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"]"));
 		addToCardBtn.click();
 	}
 	
 	public void clickOnRemoveFromCart(String productName) {
-		CommonActions.scrollToElement(productName, driver);
+		scrollToElement(productName, driver);
 		WebElement removeFromCartBtn = driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"test-Item title\" and @text='"+productName+"']//..//android.view.ViewGroup[@content-desc=\"test-REMOVE\"]"));
 		removeFromCartBtn.click();
 	}
@@ -65,7 +61,7 @@ public class ProductsPage extends CommonActions{
 	}
 	
 	public void clickOnCheckoutBtn() {
-		CommonActions.scrollToElement("CHECKOUT", driver);
+		scrollToElement("CHECKOUT", driver);
 		driver.findElement(AppiumBy.accessibilityId("test-CHECKOUT")).click();
 	}
 	

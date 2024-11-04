@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import arjityadav.sauceLabs.base.BaseClass;
-import arjityadav.sauceLabs.utils.CommonUtils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Login extends BaseClass{
 	
 	@DataProvider(name = "getData")
 	public Object[][] getData() throws IOException{
-		List<HashMap<String, String>> data = CommonUtils.getJsonData(System.getProperty("user.dir")+"\\src\\test\\java\\resources\\testData.json");
+		List<HashMap<String, String>> data = getJsonData(System.getProperty("user.dir")+"\\src\\test\\java\\resources\\testData.json");
 		return new Object[][] { {data.get(0)}};
 	}
 }

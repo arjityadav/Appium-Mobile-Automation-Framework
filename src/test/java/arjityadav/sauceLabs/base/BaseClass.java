@@ -1,21 +1,24 @@
 package arjityadav.sauceLabs.base;
 
-import java.io.File;
-import java.net.MalformedURLException;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.Properties;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
+import arjityadav.appium.utils.CommonUtils;
 import arjityadav.sauceLabs.pageObjects.LoginPage;
 import arjityadav.sauceLabs.pageObjects.ProductsPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
-public class BaseClass {
+public class BaseClass extends CommonUtils{
 
 	public AndroidDriver driver;
 	public AppiumDriverLocalService service;
@@ -24,31 +27,33 @@ public class BaseClass {
 	public String currentDirectory = System.getProperty("user.dir");
 	
 	@BeforeClass(alwaysRun = true)
-	public void mobileTestConfiguration() throws MalformedURLException, URISyntaxException {
+	public void mobileTestConfiguration() throws URISyntaxException, InterruptedException, IOException {
+		
+		Properties prop = new Properties();
+		FileInputStream fis = new FileInputStream(currentDirectory+"\\src\\test\\java\\resources\\config.properties");
+		prop.load(fis);
+		
+		String ipAddress = prop.getProperty("IPADDRESS");
+		String port = prop.getProperty("PORT");
+		String deviceName = prop.getProperty("DEVICE_NAME");
+		String deviceId = prop.getProperty("DEVICE_ID");
+		
+		// AVD Device start automatically
+		checkAndStartEmulator(deviceName, deviceId);
 		
 		// Appium server start automatically
-		
-		AppiumServiceBuilder builder = new AppiumServiceBuilder ();
-        builder.withIPAddress ("127.0.0.1")
-            .usingPort (4723)
-            .withAppiumJS (
-                new File ("C:\\Users\\yadav\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-            .usingDriverExecutable (new File ("C:\\Program Files\\nodejs\\node.exe"))
-            .withArgument (GeneralServerFlag.SESSION_OVERRIDE)
-            .withArgument (GeneralServerFlag.LOG_LEVEL, "debug");
-
-        service = AppiumDriverLocalService.buildService (builder);
-        service.start ();
+		service = startAppiumServer(ipAddress, Integer.parseInt(port));
 
 		// Android UI Automator Initialize
 		UiAutomator2Options options = new UiAutomator2Options();
 		options.setChromedriverExecutable(currentDirectory+"\\driver\\chromedriver.exe");
 		options.setUdid("emulator-5554");
 		options.setApp(currentDirectory+"\\src\\test\\java\\resources\\SauceLabsApp.apk");
-		options.setAppWaitActivity("com.swaglabsmobileapp.MainActivity");
+		options.setAppWaitActivity(prop.getProperty("APP_WAIT_ACTIVITY"));
+		options.setAppWaitForLaunch(false);
 
 		// AndroidDriver Initialize
-		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+		driver = new AndroidDriver(service.getUrl(), options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		loginPage = new LoginPage(driver);

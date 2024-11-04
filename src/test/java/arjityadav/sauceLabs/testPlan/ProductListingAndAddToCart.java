@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import arjityadav.sauceLabs.base.BaseClass;
-import arjityadav.sauceLabs.utils.CommonActions;
 
 public class ProductListingAndAddToCart extends BaseClass{
 	
@@ -14,7 +13,7 @@ public class ProductListingAndAddToCart extends BaseClass{
 		productsPage.verifyProductsOnPage();
 	}
 	
-	@Test
+	@Test(dependsOnMethods = "TC01_Verify_Product_Listing_Display")
 	public void TC02_Verify_Add_To_Cart() throws InterruptedException {
 		productsPage.clickOnAddToCard("Sauce Labs Backpack");
 		productsPage.clickOnAddToCard("Sauce Labs Bike Light");
@@ -24,24 +23,24 @@ public class ProductListingAndAddToCart extends BaseClass{
 		productsPage.verifyCartWithNumber("2");
 	}
 	
-	@Test
+	@Test(dependsOnMethods = "TC02_Verify_Add_To_Cart")
 	public void TC03_Verify_Cart_Items() throws InterruptedException {
 		productsPage.clickOnCartIcon();
 		productsPage.clickOnCheckoutBtn();
 	}
 	
-	@Test
+	@Test(dependsOnMethods = "TC03_Verify_Cart_Items")
 	public void TC04_Checkout_Information() throws InterruptedException {
 		productsPage.clickOnCartIcon();
 		productsPage.clickOnCheckoutBtn();
 		productsPage.fillCheckoutInfo("Arjit", "Yadav", "229012");
 		productsPage.clickOnContinueBtn();
-		CommonActions.scrollToElement("FINISH", driver);
+		scrollToElement("FINISH", driver);
 		Assert.assertTrue(driver.findElement(By.xpath("//android.widget.TextView[@text=\"Total: $43.18\"]")).isDisplayed());
 		productsPage.clickOnFinishBtn();
 	}
 	
-	@Test
+	@Test(dependsOnMethods = "TC04_Checkout_Information")
 	public void TC05_Order_Successfully_Placed() throws InterruptedException {
 		Assert.assertTrue(driver.findElement(By.xpath("//android.widget.TextView[@text=\"THANK YOU FOR YOU ORDER\"]")).isDisplayed());
 		productsPage.clickOnBackToHomeBtn();
