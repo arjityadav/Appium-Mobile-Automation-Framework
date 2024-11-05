@@ -31,8 +31,7 @@ public class ProductListingAndAddToCart extends BaseClass{
 	
 	@Test(dependsOnMethods = "TC03_Verify_Cart_Items")
 	public void TC04_Checkout_Information() throws InterruptedException {
-		productsPage.clickOnCartIcon();
-		productsPage.clickOnCheckoutBtn();
+		productsPage.clickOnFinishBtn();
 		productsPage.fillCheckoutInfo("Arjit", "Yadav", "229012");
 		productsPage.clickOnContinueBtn();
 		scrollToElement("FINISH", driver);

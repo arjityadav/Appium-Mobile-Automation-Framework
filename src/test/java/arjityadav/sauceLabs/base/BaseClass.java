@@ -12,6 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import arjityadav.appium.utils.CommonUtils;
+import arjityadav.appium.utils.DriverManager;
 import arjityadav.sauceLabs.pageObjects.LoginPage;
 import arjityadav.sauceLabs.pageObjects.ProductsPage;
 import io.appium.java_client.android.AndroidDriver;
@@ -55,6 +56,7 @@ public class BaseClass extends CommonUtils{
 		// AndroidDriver Initialize
 		driver = new AndroidDriver(service.getUrl(), options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		DriverManager.setDriver(driver);
 		
 		loginPage = new LoginPage(driver);
 		productsPage = new ProductsPage(driver);

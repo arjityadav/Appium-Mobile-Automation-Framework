@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+  <listeners>
+   		<listener class-name="arjityadav.appium.listeners.ReportListeners"></listener>
+  </listeners>
   <test thread-count="5" name="Test">
     <classes>
-      <class name="arjit.GeneralStoreTestPlan.tests.FillForm_Scenario01"/>
+      <class name="arjityadav.sauceLabs.testPlan.Login"/>
+      <class name="arjityadav.sauceLabs.testPlan.ProductListingAndAddToCart"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

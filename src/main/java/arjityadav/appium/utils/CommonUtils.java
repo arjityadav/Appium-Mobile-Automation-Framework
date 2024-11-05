@@ -115,7 +115,7 @@ public class CommonUtils {
 				System.out.println("Emulator not running. Starting emulator...");
 				startEmulator(emulatorName);
 				// Wait for a few seconds to let the emulator start
-				Thread.sleep(60000); // Adjust the sleep time as needed
+				Thread.sleep(100000); // Adjust the sleep time as needed
 			}
 			System.out.println("Emulator is running.");
 		} catch (InterruptedException | IOException e) {
