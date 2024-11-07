@@ -18,7 +18,7 @@ public class CommonConstants {
     private static final String CONFIG_FILE_PATH = RESOURCES_FILE_PATH + "\\config.properties";
     private static final String DATA_FILE_PATH = RESOURCES_FILE_PATH + "\\testData.json";
     private static final String CURRENT_DATA_FILE_PATH = RESOURCES_FILE_PATH + "\\properties\\currentData.properties";
-    private static final String SCREENSHOT_FILE_PATH = PROJECT_DIRECTORY + "\\reports\\screenshots\\";
+    private static final String SCREENSHOT_FILE_PATH = PROJECT_DIRECTORY + "\\results\\screenshots\\";
     private static final String EXTENT_REPORT_FILE_PATH = PROJECT_DIRECTORY + "\\results\\reports\\";
     private static final String SCREENSHOT_FILE_NAME = "Screenshot_" + DATE_TIME_STAMP + ".png";
 

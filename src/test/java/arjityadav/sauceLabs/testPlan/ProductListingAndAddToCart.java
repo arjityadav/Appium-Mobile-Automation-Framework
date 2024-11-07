@@ -7,7 +7,7 @@ import arjityadav.sauceLabs.base.BaseClass;
 
 public class ProductListingAndAddToCart extends BaseClass{
 	
-	@Test
+	@Test(groups = "smoke")
 	public void TC01_Verify_Product_Listing_Display() throws InterruptedException {
 		loginPage.loginToSauceLabs();
 		productsPage.verifyProductsOnPage();
@@ -31,7 +31,6 @@ public class ProductListingAndAddToCart extends BaseClass{
 	
 	@Test(dependsOnMethods = "TC03_Verify_Cart_Items")
 	public void TC04_Checkout_Information() throws InterruptedException {
-		productsPage.clickOnFinishBtn();
 		productsPage.fillCheckoutInfo("Arjit", "Yadav", "229012");
 		productsPage.clickOnContinueBtn();
 		scrollToElement("FINISH", driver);

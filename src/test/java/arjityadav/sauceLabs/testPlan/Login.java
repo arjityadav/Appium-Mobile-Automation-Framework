@@ -10,16 +10,23 @@ import java.util.List;
 
 public class Login extends BaseClass{
 
-	@Test
-	public void TC01_Invalid_Username_and_Password() throws InterruptedException {
+	@Test(groups = "smoke")
+	public void TC01_Invalid_Username_and_Password() {
 		loginPage.enterLoginDetails("wrong", "blahblah");
 		Assert.assertTrue(loginPage.checkForErrorMessage());
 		loginPage.clearFieldsOnLogin();
 	}
 	
 	@Test(dataProvider = "getData")
-	public void TC01_Valid_Username_and_Password(HashMap<String, String> input) throws InterruptedException {
+	public void TC02_Valid_Username_and_Password(HashMap<String, String> input) throws InterruptedException {
 		loginPage.enterLoginDetails(input.get("username"), input.get("password"));
+		Assert.assertTrue(productsPage.onProductsPage());
+	}
+	
+	//this test is meant to fail for screenshot check
+	@Test(groups = "smoke")
+	public void TC03_Valid_Username_and_Invalid_Password() {
+		loginPage.enterLoginDetails("standard_user", "helloworld");
 		Assert.assertTrue(productsPage.onProductsPage());
 	}
 	
