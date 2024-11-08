@@ -1,4 +1,4 @@
-# Appium Mobile Automation Framework
+# Appium-Mobile-Automation-Framework
 
 Framework for Mobile test automation (Native app and Browser) on Android devices :iphone:
 
@@ -86,8 +86,8 @@ Type url `chrome://inspect/#devices` in the desktop chrome browser and start ins
 Add below lines in the Desired capabilities
 
 ```
-capability.setCapability(AndroidMobileCapabilityType.AVD, "ArjitPhone");
-capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, "180000");
+options.setAvd("ArjitPhone");
+or there is another method name - checkAndStartEmulator(deviceName, deviceId) in the CommonUtils Class
 ```
 
 ## :pushpin: Auto Discovery of compatible ChromeDriver
@@ -99,7 +99,6 @@ Start appium server using command `appium --allow-insecure chromedriver_autodown
 Add below line in the `AppiumServiceBuilder`
 
 ```
-AppiumServiceBuilder builder = new AppiumServiceBuilder();
 builder.withArgument(GeneralServerFlag.ALLOW_INSECURE, "chromedriver_autodownload");
 ```
 
@@ -110,11 +109,9 @@ variable `APPIUM_HOME = <path to npm folder>\node_modules\appium\build\lib` wher
 
 ## :pushpin: Key Features
 
-:point_right: Supports Android and iOS Real Devices and Emulators.
+:point_right: Supports Android - Real Devices and Emulators.
 
-:point_right: Ability to start and stop the appium server on run-time. Configurable through `config.properties`
-
-:point_right: Supports capturing appium server logs on run-time.
+:point_right: Ability to start and stop the appium server on run-time.
 
 :point_right: Page object model design.
 
