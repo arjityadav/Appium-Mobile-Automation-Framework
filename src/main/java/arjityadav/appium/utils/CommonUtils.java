@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableMap;
 import arjityadav.appium.constants.CommonConstants;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileCommand;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -69,8 +70,9 @@ public class CommonUtils {
 		builder.withIPAddress(ipAddress).usingPort(portNumber)
 				.withAppiumJS(new File(System.getProperty("user.home")
 						+ "\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-				.usingDriverExecutable(new File(path)).withArgument(GeneralServerFlag.SESSION_OVERRIDE)
-				.withArgument(GeneralServerFlag.LOG_LEVEL, "debug");
+				.withArgument(GeneralServerFlag.LOG_LEVEL, "debug")
+				.withArgument(GeneralServerFlag.ALLOW_INSECURE, "chromedriver_autodownload");
+			
 
 		AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
 		service.start();

@@ -40,7 +40,7 @@ public class BaseClass extends CommonUtils{
 		String deviceId = prop.getProperty("DEVICE_ID");
 		
 		// AVD Device start automatically
-		checkAndStartEmulator(deviceName, deviceId);
+//		checkAndStartEmulator(deviceName, deviceId);
 		
 		// Appium server start automatically
 		service = startAppiumServer(ipAddress, Integer.parseInt(port));
@@ -52,6 +52,7 @@ public class BaseClass extends CommonUtils{
 		options.setApp(currentDirectory+"\\src\\test\\java\\resources\\SauceLabsApp.apk");
 		options.setAppWaitActivity(prop.getProperty("APP_WAIT_ACTIVITY"));
 		options.setAppWaitForLaunch(false);
+		options.setAvd("ArjitPhone");
 
 		// AndroidDriver Initialize
 		driver = new AndroidDriver(service.getUrl(), options);
